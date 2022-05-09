@@ -10,3 +10,11 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN install-php-extensions gd pdo_mysql bcmath zip intl opcache
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+RUN git config --global user.email "malazaro@gmail.com" \
+    && git config --global user.name "Miguel"
