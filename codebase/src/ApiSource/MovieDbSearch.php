@@ -1,5 +1,6 @@
 <?php
-// src/ApiResource/MovieDbSearch.php 
+
+// src/ApiResource/MovieDbSearch.php
 
 namespace App\ApiSource;
 

@@ -7,7 +7,6 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 interface HttpClientInterface
 {
-
     /**
      * @param string $method
      * @param string $url

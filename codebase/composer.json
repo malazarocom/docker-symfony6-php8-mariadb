@@ -75,7 +75,8 @@
             "@auto-scripts"
         ],
         "phpstan": "phpstan analyse src tests",
-        "phpunit": "php bin/phpunit"
+        "phpunit": "php bin/phpunit",
+        "fixer": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src"
     },
         
     "conflict": {
