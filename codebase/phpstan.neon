@@ -1,0 +1,11 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    parallel:
+        processTimeout: 600.0
+    tmpDir: var/cache/phpstan
+    #doctrine:
+    #  repositoryClass: Doctrine\ORM\EntityRepository
+    #  objectManagerLoader: config/phpstan/doctrine-orm-bootstrap.php
+    
