@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use App\Entity\Film;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -13,9 +12,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class MovieDbSubscriber implements EventSubscriberInterface
 {
-    private $entityManager;
-    private $getFilmById;
-    private $serializer;
+    private EntityManagerInterface $entityManager;
+    private GetFilmById $getFilmById;
+    private SerializerInterface $serializer;
 
     public function __construct(GetFilmById $getFilmById, EntityManagerInterface $entityManager, SerializerInterface $serializer)
     {
@@ -31,6 +30,9 @@ class MovieDbSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @return void
+     */
     public function setFullDetails(ViewEvent $event)
     {
         $film = $event->getControllerResult();
@@ -43,8 +45,7 @@ class MovieDbSubscriber implements EventSubscriberInterface
             $jsonContent = $this->serializer->serialize($fullDetails, 'json');
             $jsonContent = json_decode($jsonContent, true);
             $film->setFullDetails($jsonContent);
-            // $this->entityManager->persist($film);
-            // $this->entityManager->flush();
+            $this->entityManager->persist($film);
         }
     }
 }

@@ -36,6 +36,9 @@ class Film
         return $this->id;
     }
 
+    /**
+     * @return integer|null
+     */
     public function getMovieDbId(): ?int
     {
         return $this->movieDbId;
