@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class MovieDbController extends AbstractController
 {
     #[Route('/web/moviedb/{movieDbId}', methods: ['GET'])]
-    public function getAction(GetFilmById $GetFilmById, Request $request): JsonResponse
+    public function __invoke(GetFilmById $GetFilmById, Request $request): JsonResponse
     {
         $movieDbId = $request->get('movieDbId', null);
 

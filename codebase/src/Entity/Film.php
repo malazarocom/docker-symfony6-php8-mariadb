@@ -8,13 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 #[ApiResource(
-    collectionOperations: [
-        'get',
-        'post',
-    ],
-    itemOperations: [
-        'get'
-    ],
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get'],
     shortName: "vhs"
 )]
 class Film
@@ -23,17 +18,45 @@ class Film
     private ?int $id = null;
 
     #[ORM\Column]
-    public ?int $moviedbId = null;
+    public ?int $movieDbId = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
     public string $name = '';
 
+    /**
+     * @var array<string,array<string,bool|string|int|float|int[]>>
+     * }
+     */
     #[ORM\Column]
-    public ?\DateTimeImmutable $publicationDate = null;
+    public array $fullDetails;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getMovieDbId(): ?int
+    {
+        return $this->movieDbId;
+    }
+
+    /**
+     * @return array<string,array<string,bool|string|int|float|int[]>>
+     */
+    public function getFullDetails()
+    {
+        return $this->fullDetails;
+    }
+
+    /**
+     *
+     * @param array<string, array<string, array<int>|bool|float|int|string>> $fullDetails
+     */
+    public function setFullDetails(array $fullDetails): self
+    {
+        $this->fullDetails = $fullDetails;
+
+        return $this;
     }
 }
